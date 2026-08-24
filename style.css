@@ -80,21 +80,31 @@
     max-width: 500px;
 }
 #categories{
-    align-items: center;
-    margin: 10px;
-    gap: 20px;
+    padding: 50px;
+    background-color: #fff;
+    margin: 15px;
 }
 .categories{
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
+    justify-content: center;
+    gap: 20px;
     text-align: center;
 }
 .category{
+    padding: 10px;
+    margin: 10px;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 600;
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(77, 32, 32);
+    border-radius: 30px;
+    color: rgb(77, 32, 32);
+}
+.category:hover{
+    background-color: rgb(77, 32, 32);
+    color: #fff;
 }
 #products{
     background-color: #f8f5f2;
