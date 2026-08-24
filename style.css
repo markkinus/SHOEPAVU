@@ -52,6 +52,8 @@
     font-size: 48px;
     font-weight: bold;
     padding: 15px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 15px;
     margin-bottom: 15px;
     color: rgb(77, 32, 32);
 }
