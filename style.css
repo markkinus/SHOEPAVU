@@ -29,6 +29,7 @@
     color: white;
     font-weight: bold;
     text-decoration: none;
+    font-size: 20px;
 }
 .cart i{
     padding: 15px;
@@ -37,38 +38,45 @@
     color: rgb(0, 0, 0);
 }
 #hero-section{
+    display: flex;
+    justify-content: space-between;
     text-align: center;
-    background-color: #f5eeee;
+    background-color: #f5f1ed;
     padding: 15px;
 }
 .hero-content{
     text-align: center;
+    width: 50%;
 }
-#hero-content h2{
-    font-size: 20px;
+.hero-content h2{
+    font-size: 48px;
     font-weight: bold;
     padding: 15px;
     margin-bottom: 15px;
+    color: rgb(77, 32, 32);
 }
-#hero-content p{
+.hero-content p{
     padding: 15px;
-    font-size: 10px;
-    margin-bottom: 15px;
+    font-size: 22px;
+    margin-bottom: 25px;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
-#hero-section button{
+.hero-content button{
     border: circle;
     background-color:rgb(77, 32, 32);
     color: white;
-    padding: 10px;
+    padding: 12px;
     font-weight: bold;
     font-size: larger;
-    border-radius: 10px;
+    border-radius: 5px;
     margin: 5px;
 }
+.hero-content button:hover{
+    background-color: rgb(105, 50, 50);
+}
 #hero-section img{
-    width: 42%;
-    height: 50%;
+    width: 40%;
+    max-width: 500px;
 }
 #categories{
     align-items: center;
