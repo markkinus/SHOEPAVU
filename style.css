@@ -1,5 +1,7 @@
 *{
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 #header{
     display:flex;
@@ -56,6 +58,13 @@
     margin-top: 15px;
     margin-bottom: 15px;
     color: rgb(77, 32, 32);
+}
+.hero-content h3{
+    padding: 15px;
+    font-size: 30px;
+    margin-bottom: 15px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(105, 50, 50);
 }
 .hero-content p{
     padding: 15px;
