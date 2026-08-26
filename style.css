@@ -95,11 +95,11 @@
     background-color: #fff;
     margin: 15px;
 }
-.categories-heading{
+.section-heading{
     text-align: center;
     margin-bottom: 40px;
 }
-.categories-heading h2{
+.section-heading h2{
     text-align: center;
     font-size: 30px;
     font-weight: bold;
@@ -107,7 +107,7 @@
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     color: rgb(77, 32, 32);
 }
-.categories-heading p{
+.section-heading p{
     color: #666;
 }
 .categories{
@@ -146,7 +146,7 @@
     color: #fff;
 }
 #products{
-    background-color: #f8f5f2;
+    background-color: #f3ebe5;
     padding: 15px;
 }
 .product-grid{
@@ -155,22 +155,23 @@
     gap: 30px;
 }
 .product-card{
-    border: 1px solid #e2e8f0;
-    background-color: #f8fafc;
+    background-color: white;
     border-radius: 8px;
     padding: 10px;
     text-align:center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 .product-card:hover{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 .product-card img{
     width: 100%;
-    height:240px;
+    height:230px;
     object-fit: cover;
     border-radius: 8px;
 }
 .product-card h3{
+    margin: 10px 0;
     font: bold;
     font-size: 20px;
     color: rgb(77, 32, 32);
