@@ -1,5 +1,21 @@
 console.log("your project is connected");
 
+// Cart functionality
+let cart = []
+
+// Get the order buttons
+const orderButtons = document.querySelectorAll(".product-card button")
+
+// Add event listener to each order button
+orderButtons.forEach(function(button) {
+    button.addEventListener("click", function() {
+        // Get the product card that contains the button
+        const productCard = button.closest(".product-card");
+        console.log(productCard);
+    })
+})
+
+
 // Search functionality
 const searchInput = document.getElementById("searchInput");
 const productCards = document.querySelectorAll(".product-card");
