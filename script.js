@@ -21,3 +21,19 @@ function searchProducts() {
 }
 
 searchInput.addEventListener("input", searchProducts);
+
+// Category functionality
+// Get the category links
+const categoryLinks = document.querySelectorAll(".category");
+// console.log(categoryLinks);
+categoryLinks.forEach(function(categoryLink) {
+    categoryLink.addEventListener("click", function(){
+        const categoryName = categoryLink.querySelector("h3").textContent;
+        // console.log(categoryName);
+        //use the category name to filter the products
+        productCards.forEach(function(product) {
+            console.log(product);
+        })
+    })
+    
+})
