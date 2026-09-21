@@ -1,1 +1,23 @@
 console.log("your project is connected");
+
+// Search functionality
+const searchInput = document.getElementById("searchInput");
+const productCards = document.querySelectorAll(".product-card");
+
+// Function to search for products
+function searchProducts() {
+    // Get the search term
+    const searchTerm = searchInput.value.toLowerCase();
+    productCards.forEach(function(product)  {
+        // Get the product name
+        const productName = product.querySelector("h3").textContent.toLowerCase();
+        // Check if the product name includes the search term
+        if (productName.includes(searchTerm)) {
+            product.style.display = "block";
+        } else {
+            product.style.display = "none";
+        }
+    });
+}
+
+searchInput.addEventListener("input", searchProducts);
