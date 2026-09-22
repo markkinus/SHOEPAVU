@@ -30,10 +30,24 @@ orderButtons.forEach(function(button) {
         const cartProduct = {
             name: productName, 
             price: productPrice, 
-            image: productImage
+            image: productImage,
+            quantity: 1
+        }
+
+        // check if the product being ordered already exists
+        const existingProduct = cart.find(function(item) {
+            return item.name === productName
+        })
+        console.log(existingProduct)
+
+        //using if...else to add or increase quantity
+        if (existingProduct) {
+            existingProduct.quantity++
+        } else {
+            cart.push(cartProduct)
         }
         //add products to cart
-        cart.push(cartProduct)
+        // cart.push(cartProduct)
         console.log(cart)
     })
 })
