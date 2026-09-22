@@ -3,6 +3,31 @@ console.log("your project is connected");
 // Cart functionality
 let cart = []
 
+// get the cart elements in js
+const cartButton = document.querySelector(".cart");
+const cartContainer = document.getElementById("cart-container");
+const cartItems = document.getElementById("cart-items");
+const closeCart = document.getElementById("close-cart");
+
+// console.log(cartButton);
+// console.log(cartContainer);
+// console.log(cartItems);
+// console.log(closeCart);
+
+// add a click event to the cart button
+cartButton.addEventListener("click", function(event) {
+    event.preventDefault()
+
+    // display the cart container
+    cartContainer.style.display = "block"
+})
+
+// add a click event to the close cart button
+closeCart.addEventListener("click", function() {
+    //hide the cart container
+    cartContainer.style.display = "none"
+})
+
 // Get the order buttons
 const orderButtons = document.querySelectorAll(".product-card button")
 
@@ -49,8 +74,34 @@ orderButtons.forEach(function(button) {
         //add products to cart
         // cart.push(cartProduct)
         console.log(cart)
+
+        displayCart()
     })
 })
+
+// function to display products inside cart
+function displayCart() {
+    //clear the cart area before displaying the products
+    cartItems.innerHTML = ""
+
+    // to go through each product in cart
+    cart.forEach(function(item) {
+        // create a new div for the cart product
+        const cartItem = document.createElement("div")
+        // add the class item class to the div
+        cartItem.classList.add("cart-item")
+        // place the product information inside
+        cartItem.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <h3>${item.name}</h3>
+        <p>Price: ${item.price}</p>
+        <p>Quantity: ${item.quantity}</p>
+        `
+        //put the cart item to the cart container
+        cartItems.appendChild(cartItem)
+    })
+    console.log(cart)
+}
 
 
 // Search functionality

@@ -395,6 +395,64 @@
 .contact-form button:hover{
     background-color: rgb(105, 50, 50);
 }
+#cart-container {
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 400px;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+}
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+}
+#close-cart {
+    border: none;
+    font-size: 30px;
+    color: #333;
+}
+#close-cart:hover {
+    color: rgb(77, 32, 32);
+}
+.cart-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 10px;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.cart-item img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.cart-item h3 {
+    color: rgb(77, 32, 32);
+    font-size: 18px;
+    margin: 5px;
+}
+.cart-item p {
+    color: #555;
+    font-size: 15px;
+    margin: 5px;
+}
+.cart-footer {
+    padding-top: 20px;
+    border-top: 2px solid #ddd;
+    margin-top: 20px;
+}
+.cart-footer h3 {
+    color: rgb(77, 32, 32);
+    font-size: 20px;
+}
 #footer{
     padding: 60px;
     background-color: #321515;
