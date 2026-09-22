@@ -8,6 +8,7 @@ const cartButton = document.querySelector(".cart");
 const cartContainer = document.getElementById("cart-container");
 const cartItems = document.getElementById("cart-items");
 const closeCart = document.getElementById("close-cart");
+const cartTotal = document.getElementById("cart-total")
 
 // console.log(cartButton);
 // console.log(cartContainer);
@@ -84,6 +85,9 @@ function displayCart() {
     //clear the cart area before displaying the products
     cartItems.innerHTML = ""
 
+    //start the total at 0
+    let total = 0;
+
     // to go through each product in cart
     cart.forEach(function(item) {
         // create a new div for the cart product
@@ -99,7 +103,19 @@ function displayCart() {
         `
         //put the cart item to the cart container
         cartItems.appendChild(cartItem)
+
+        // make the price only numeric by removing KSH and comma
+        const price = Number(item.price.replace("KSH ", "").replace(",", ""))
+
+        //calculate the product subtotal
+        const subtotal = price * item.quantity
+
+        //add the subtotal to the total
+        total = total + subtotal
     })
+
+    //display the total price in the cart
+    cartTotal.textContent = total.toLocaleString()
     console.log(cart)
 }
 
