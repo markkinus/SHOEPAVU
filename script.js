@@ -9,9 +9,32 @@ const orderButtons = document.querySelectorAll(".product-card button")
 // Add event listener to each order button
 orderButtons.forEach(function(button) {
     button.addEventListener("click", function() {
+
         // Get the product card that contains the button
         const productCard = button.closest(".product-card");
-        console.log(productCard);
+        // console.log(productCard);
+
+        // get teh product name
+        const productName = productCard.querySelector("h3").textContent
+        // console.log(productName)
+
+        // get the product price
+        const productPrice = productCard.querySelector(".price").textContent
+        // console.log(productPrice)
+
+        //get the product iamge
+        const productImage = productCard.querySelector("img").src
+        // console.log(productImage)
+
+        //create the cart product
+        const cartProduct = {
+            name: productName, 
+            price: productPrice, 
+            image: productImage
+        }
+        //add products to cart
+        cart.push(cartProduct)
+        console.log(cart)
     })
 })
 
