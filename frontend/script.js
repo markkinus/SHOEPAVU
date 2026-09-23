@@ -153,6 +153,7 @@ checkoutButton.addEventListener("click", function() {
         alert("Your cart is empty")
         return
     }
+
     // Display a success message
     alert("Your order has been placed successfully!")
     // Clear the cart
@@ -206,6 +207,50 @@ registerForm.addEventListener("submit", function(event) {
     registerForm.reset();
 })
 
+// Sign in functionality
+// Get the sign in button
+const signInButton = document.getElementById("sign-in-button");
+const signInModal = document.getElementById("sign-in-modal");
+const closeSignIn = document.getElementById("close-sign-in");
+
+// Add a click event to the sign in button
+signInButton.addEventListener("click", function() {
+    signInModal.style.display = "flex"
+})
+
+// Add a click event to the close sign in button
+closeSignIn.addEventListener("click", function() {
+    signInModal.style.display = "none"
+})
+
+// Get the sign in form
+const signInForm = document.getElementById("sign-in-form");
+const signInMessage = document.getElementById("sign-in-message");
+
+// Add a submit event to the sign in form
+signInForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Get the form data entered by the user
+    const email = document.getElementById("sign-in-email").value;
+    const password = document.getElementById("sign-in-password").value;
+
+    // Get the registered user from the local storage
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    // Check if the user exists and the password is correct
+    if (!user) {
+        signInMessage.textContent = "User not found";
+        return
+    }
+    if (email ===user.email && password ===user.password) {
+        signInMessage.textContent = "Sign in successful";
+
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+    } else {
+        signInMessage.textContent = "Incorrect email or password";
+    }
+})
 
 // Search functionality
 const searchInput = document.getElementById("searchInput");
