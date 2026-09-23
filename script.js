@@ -1,5 +1,7 @@
 console.log("your project is connected");
 
+let allProducts = []
+
 // Cart functionality
 let cart = []
 
@@ -122,22 +124,26 @@ function displayCart() {
 
 // Search functionality
 const searchInput = document.getElementById("searchInput");
-const productCards = document.querySelectorAll(".product-card");
 
 // Function to search for products
 function searchProducts() {
     // Get the search term
     const searchTerm = searchInput.value.toLowerCase();
-    productCards.forEach(function(product)  {
+
+    // Filter the products
+    const filteredProducts = []
+
+    // Loop through all products
+    allProducts.forEach(function(product)  {
         // Get the product name
-        const productName = product.querySelector("h3").textContent.toLowerCase();
+        const productName = product.name.toLowerCase();
         // Check if the product name includes the search term
         if (productName.includes(searchTerm)) {
-            product.style.display = "block";
-        } else {
-            product.style.display = "none";
+            // Add the product to the filteredProducts array
+            filteredProducts.push(product)
         }
     });
+    displayProducts(filteredProducts)
 }
 
 searchInput.addEventListener("input", searchProducts);
@@ -166,3 +172,49 @@ categoryLinks.forEach(function(categoryLink) {
     })
     
 })
+
+
+fetch("products.json")
+    .then(function(response) {
+        return response.json()
+    })
+    .then(function(products) {
+        
+        allProducts = products
+
+        displayProducts(allProducts)
+    })
+
+    .catch(function(error) {
+        console.log("Error fetching products:", error)
+    })
+
+    const productGrid = document.getElementById("product-grid");
+
+    function displayProducts(products) {
+
+        //clear the product area
+        productGrid.innerHTML = "";
+
+        //loop through each product
+        products.forEach(function(product) {
+
+            //create a product card div
+            const productCard = document.createElement("div");
+            //add the product-card class
+            productCard.classList.add("product-card");
+
+            //place the product information inside
+            productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p class="price">KSH ${product.price.toLocaleString()}</p>
+            <p>Category: ${product.category}</p>
+            <p>Rating: ${product.rating}</p>
+            <p>${product.description}</p>
+            <button>Order Now</button>
+            `
+            //append the product card to the product grid
+            productGrid.appendChild(productCard)
+        })
+    }
