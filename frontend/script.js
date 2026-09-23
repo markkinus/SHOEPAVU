@@ -173,7 +173,7 @@ categoryLinks.forEach(function(categoryLink) {
 
 
 // Fetch products
-fetch("products.json")
+fetch("http://localhost:3000/products")
 // Convert the response to JSON
     .then(function(response) {
         return response.json()
