@@ -31,56 +31,6 @@ closeCart.addEventListener("click", function() {
     cartContainer.style.display = "none"
 })
 
-// Get the order buttons
-const orderButtons = document.querySelectorAll(".product-card button")
-
-// Add event listener to each order button
-orderButtons.forEach(function(button) {
-    button.addEventListener("click", function() {
-
-        // Get the product card that contains the button
-        const productCard = button.closest(".product-card");
-        // console.log(productCard);
-
-        // get teh product name
-        const productName = productCard.querySelector("h3").textContent
-        // console.log(productName)
-
-        // get the product price
-        const productPrice = productCard.querySelector(".price").textContent
-        // console.log(productPrice)
-
-        //get the product iamge
-        const productImage = productCard.querySelector("img").src
-        // console.log(productImage)
-
-        //create the cart product
-        const cartProduct = {
-            name: productName, 
-            price: productPrice, 
-            image: productImage,
-            quantity: 1
-        }
-
-        // check if the product being ordered already exists
-        const existingProduct = cart.find(function(item) {
-            return item.name === productName
-        })
-        console.log(existingProduct)
-
-        //using if...else to add or increase quantity
-        if (existingProduct) {
-            existingProduct.quantity++
-        } else {
-            cart.push(cartProduct)
-        }
-        //add products to cart
-        // cart.push(cartProduct)
-        console.log(cart)
-
-        displayCart()
-    })
-})
 
 // function to display products inside cart
 function displayCart() {
@@ -100,17 +50,59 @@ function displayCart() {
         cartItem.innerHTML = `
         <img src="${item.image}" alt="${item.name}">
         <h3>${item.name}</h3>
-        <p>Price: ${item.price}</p>
-        <p>Quantity: ${item.quantity}</p>
+        <p>Price: ${item.price.toLocaleString}</p>
+        <div class="quantity-controls">
+        <button class="decrease-button">-</button>
+        <span class="quantity">${item.quantity}</span>
+        <button class="increase-button">+</button>
+        </div>
+        <button class="remove-button">Remove</button>
         `
         //put the cart item to the cart container
         cartItems.appendChild(cartItem)
 
-        // make the price only numeric by removing KSH and comma
-        const price = Number(item.price.replace("KSH ", "").replace(",", ""))
+       //get the decrease button
+        const decreaseButton = cartItem.querySelector(".decrease-button")
+
+        //add a click event to the decrease button
+        decreaseButton.addEventListener("click", function() {
+
+            //check if the quantity is greater than 1
+            if (item.quantity > 1) {
+            //decrease the quantity
+            item.quantity--
+            //display the cart
+            displayCart()
+            }
+        })
+        
+        //get the increase button
+        const increaseButton = cartItem.querySelector(".increase-button")
+
+        //add a click event to the increase button
+        increaseButton.addEventListener("click", function() {
+            //increase the quantity
+            item.quantity++
+            //display the cart
+            displayCart()
+        })
+        
+        //get the remove button
+        const removeButton = cartItem.querySelector(".remove-button")
+
+        //add a click event to the remove button
+        removeButton.addEventListener("click", function() {
+            //remove the product from the cart
+            cart = cart.filter(function(product) {
+                return product.name !== item.name
+            })
+            //display the cart
+            displayCart()
+        })
+
 
         //calculate the product subtotal
-        const subtotal = price * item.quantity
+        const subtotal = item.price * item.quantity
 
         //add the subtotal to the total
         total = total + subtotal
@@ -155,42 +147,56 @@ const categoryLinks = document.querySelectorAll(".category");
 categoryLinks.forEach(function(categoryLink) {
     categoryLink.addEventListener("click", function(event){
         event.preventDefault();
+
         // Get the category name
         const categoryName = categoryLink.querySelector("h3").textContent;
-         console.log("Selected category:", categoryName);
-        //use the category name to filter the products
-        productCards.forEach(function(product) {
-            // Get each product's category 
-            const productCategory = product.dataset.category;
-            console.log(productCategory);
-            if (productCategory === categoryName) {
-                product.style.display = "block";
-            } else {
-                product.style.display = "none";
+        //  console.log(categoryName);
+
+        //create an empty array for filtered products
+        const filteredProducts = []
+
+        //loop through all products
+        allProducts.forEach(function(product) {
+
+            // Check if the product category matches the category name
+            if (product.category === categoryName) {
+                // Add the product to the filteredProducts array
+                filteredProducts.push(product)
             }
         })
+        // Display the matching products
+        displayProducts(filteredProducts)
+
     })
-    
+
 })
 
 
+// Fetch products
 fetch("products.json")
+// Convert the response to JSON
     .then(function(response) {
         return response.json()
     })
+    // Display the products
     .then(function(products) {
-        
+
+        // store the products
         allProducts = products
 
+        // Display the products
         displayProducts(allProducts)
     })
 
+    // Handle errors
     .catch(function(error) {
         console.log("Error fetching products:", error)
     })
 
+    // Get the product grid
     const productGrid = document.getElementById("product-grid");
 
+    // Function to display products
     function displayProducts(products) {
 
         //clear the product area
@@ -216,5 +222,37 @@ fetch("products.json")
             `
             //append the product card to the product grid
             productGrid.appendChild(productCard)
+
+            //get the order button
+            const orderButton = productCard.querySelector("button")
+
+            //add a click event to the order button
+            orderButton.addEventListener("click", function() {
+
+                //check if the product is already in the cart
+                const existingProduct = cart.find(function(item) {
+                    return item.name === product.name
+                })
+
+                //if the product is in the cart, increase the quantity
+                if (existingProduct) {
+                    existingProduct.quantity++
+                } else {
+
+                    //create a new cart product
+                    const cartProduct = {
+                        name: product.name,
+                        image: product.image,
+                        price: product.price,
+                        quantity: 1
+                    }
+
+                    //add the cart product to the cart
+                    cart.push(cartProduct)
+                }
+                
+                console.log("Cart:", cart)
+                displayCart()
+            })
         })
     }
