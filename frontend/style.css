@@ -39,16 +39,77 @@
 .cart:hover{
     color: rgb(0, 0, 0);
 }
+#cart-count{
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color:#d4a017;
+}
+.quantity-controls{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.quantity-controls button{
+    background-color:  rgb(77, 32, 32);
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+}
+.quantity-controls button:hover{
+    background-color: rgb(105, 50, 50);
+}   
+.quantity{
+    font-weight: bold;
+    margin: 0 10px;
+}
+.remove-button{
+    background-color: #ddd;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+}
+.remove-button:hover{
+    background-color: #bbb;
+}
+#checkout-button{
+    border: none;
+    border-radius: 8px;
+    background-color:rgb(77, 32, 32);
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 12px
+}
+#checkout-button:hover{
+    background-color: rgb(105, 50, 50);
+}
 #hero-section{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     text-align: center;
     background-color: #f5f1ed;
-    padding: 15px;
+    padding: 50px;
 }
 .hero-content{
+    display: flex;
     text-align: center;
-    width: 50%;
+    flex-direction: column;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
 }
 .hero-content h2{
     font-size: 48px;
@@ -154,12 +215,32 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
 }
+.search-container{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    max-width: 500px;
+}
+.search-container input{
+    width: 100%;
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
 .product-card{
     background-color: white;
     border-radius: 8px;
-    padding: 10px;
+    padding: 15px;
     text-align:center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+.product-card p{
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 15px;
 }
 .product-card:hover{
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);

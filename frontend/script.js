@@ -265,7 +265,13 @@ fetch("http://localhost:3000/api/products")
             <h3>${product.name}</h3>
             <p class="price">KSH ${product.price.toLocaleString()}</p>
             <p>Category: ${product.category}</p>
-            <p>Rating: ${product.rating}</p>
+            <div class="rating-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
             <p>${product.description}</p>
             <button>Order Now</button>
             `
