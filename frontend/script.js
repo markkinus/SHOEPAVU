@@ -50,7 +50,7 @@ function displayCart() {
         cartItem.innerHTML = `
         <img src="${item.image}" alt="${item.name}">
         <h3>${item.name}</h3>
-        <p>Price: ${item.price.toLocaleString}</p>
+        <p>Price: ${item.price.toLocaleString()}</p>
         <div class="quantity-controls">
         <button class="decrease-button">-</button>
         <span class="quantity">${item.quantity}</span>
@@ -173,7 +173,7 @@ categoryLinks.forEach(function(categoryLink) {
 
 
 // Fetch products
-fetch("http://localhost:3000/products")
+fetch("http://localhost:3000/api/products")
 // Convert the response to JSON
     .then(function(response) {
         return response.json()
