@@ -154,6 +154,15 @@ checkoutButton.addEventListener("click", function() {
         return
     }
 
+    // Check if the user is logged in
+    const loggedInUser = localStorage.getItem("loggedInUser")
+
+    // If the user is not logged in, display an error message
+    if (!loggedInUser) {
+        alert("You must be logged in to checkout")
+        return
+    }
+
     // Display a success message
     alert("Your order has been placed successfully!")
     // Clear the cart
@@ -201,6 +210,9 @@ registerForm.addEventListener("submit", function(event) {
 
     // Add the user to the users array
     localStorage.setItem("user", JSON.stringify(user));
+
+    //prevent user from automatically signing in
+    localStorage.removeItem("loggedInUser")
 
     registerMessage.textContent = "Registration successful!";
     
