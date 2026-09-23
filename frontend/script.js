@@ -132,6 +132,25 @@ function displayCart() {
     console.log(cart)
 }
 
+// Checkout functionality
+// Get the checkout button
+const checkoutButton = document.getElementById("checkout-button");
+
+// Add a click event to the checkout button
+checkoutButton.addEventListener("click", function() {
+    // Check if the cart is empty
+    if (cart.length === 0) {
+        alert("Your cart is empty")
+        return
+    }
+    // Display a success message
+    alert("Your order has been placed successfully!")
+    // Clear the cart
+    cart = []
+    displayCart()
+    updateCartCount()
+})
+
 
 // Search functionality
 const searchInput = document.getElementById("searchInput");
