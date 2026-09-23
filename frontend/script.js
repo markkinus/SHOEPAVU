@@ -3,7 +3,14 @@ console.log("your project is connected");
 let allProducts = []
 
 // Cart functionality
-let cart = []
+// get the cart from local storage
+let cart =  JSON.parse(localStorage.getItem("cart")) || []
+
+// save the cart to local storage
+function saveCart() {
+    //convert the cart to a string to store in local storage
+    localStorage.setItem("cart", JSON.stringify(cart))
+}
 
 // get the cart elements in js
 const cartButton = document.querySelector(".cart");
@@ -87,6 +94,7 @@ function displayCart() {
             if (item.quantity > 1) {
             //decrease the quantity
             item.quantity--
+            saveCart()
             //display the cart
             displayCart()
             updateCartCount()
@@ -100,6 +108,7 @@ function displayCart() {
         increaseButton.addEventListener("click", function() {
             //increase the quantity
             item.quantity++
+            saveCart()
             //display the cart
             displayCart()
             updateCartCount()
@@ -114,6 +123,7 @@ function displayCart() {
             cart = cart.filter(function(product) {
                 return product.name !== item.name
             })
+            saveCart()
             //display the cart
             displayCart()
             updateCartCount()
@@ -147,6 +157,7 @@ checkoutButton.addEventListener("click", function() {
     alert("Your order has been placed successfully!")
     // Clear the cart
     cart = []
+    saveCart()
     displayCart()
     updateCartCount()
 })
@@ -290,6 +301,7 @@ fetch("http://localhost:3000/api/products")
                 }
                 
                 console.log("Cart:", cart)
+                saveCart()
                 displayCart()
 
                 //update the cart count
@@ -300,3 +312,6 @@ fetch("http://localhost:3000/api/products")
             })
         })
     }
+
+    displayCart()
+    updateCartCount()
