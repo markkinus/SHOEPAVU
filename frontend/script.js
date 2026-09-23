@@ -12,6 +12,22 @@ const cartItems = document.getElementById("cart-items");
 const closeCart = document.getElementById("close-cart");
 const cartTotal = document.getElementById("cart-total")
 
+const cartCount = document.getElementById("cart-count");
+
+// Function to update the cart count
+function updateCartCount() {
+    let totalQuantity = 0
+
+    //loop through each item in the cart
+    cart.forEach(function(item) {
+        //add the quantity to the total
+        totalQuantity += item.quantity
+    })
+
+    //update the cart count
+    cartCount.textContent = totalQuantity
+}
+
 // console.log(cartButton);
 // console.log(cartContainer);
 // console.log(cartItems);
@@ -73,6 +89,7 @@ function displayCart() {
             item.quantity--
             //display the cart
             displayCart()
+            updateCartCount()
             }
         })
         
@@ -85,6 +102,7 @@ function displayCart() {
             item.quantity++
             //display the cart
             displayCart()
+            updateCartCount()
         })
         
         //get the remove button
@@ -98,6 +116,7 @@ function displayCart() {
             })
             //display the cart
             displayCart()
+            updateCartCount()
         })
 
 
@@ -253,6 +272,12 @@ fetch("http://localhost:3000/api/products")
                 
                 console.log("Cart:", cart)
                 displayCart()
+
+                //update the cart count
+                updateCartCount()
+
+                //show ordered message
+            alert("Product added to cart successfully")
             })
         })
     }
