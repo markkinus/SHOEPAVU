@@ -315,3 +315,18 @@ fetch("http://localhost:3000/api/products")
 
     displayCart()
     updateCartCount()
+
+    //contact functionality
+    // Get the contact form
+    const contactForm = document.querySelector(".contact-form");
+
+    // Get the contact message
+    const contactMessage = document.getElementById("contact-message");
+
+    contactForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        contactMessage.textContent = "Your message has been sent successfully!"
+
+        contactForm.reset();
+    })
