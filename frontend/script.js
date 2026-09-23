@@ -162,6 +162,50 @@ checkoutButton.addEventListener("click", function() {
     updateCartCount()
 })
 
+// Register functionality
+// Get the register button
+const registerButton = document.getElementById("register-button");
+const registerModal = document.getElementById("register-modal");
+const closeRegister = document.getElementById("close-register");
+
+// Add a click event to the register button
+registerButton.addEventListener("click", function() {
+    registerModal.style.display = "flex"
+})
+
+// Add a click event to the close register button
+closeRegister.addEventListener("click", function() {
+    registerModal.style.display = "none"
+})
+
+// Get the register form
+const registerForm = document.getElementById("register-form");
+const registerMessage = document.getElementById("register-message");
+
+// Add a submit event to the register form
+registerForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Get the form data
+    const name = document.getElementById("register-name").value;
+    const email = document.getElementById("register-email").value;
+    const password = document.getElementById("register-password").value;
+
+    // Create a new user object containing user information
+    const user = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    // Add the user to the users array
+    localStorage.setItem("user", JSON.stringify(user));
+
+    registerMessage.textContent = "Registration successful!";
+    
+    registerForm.reset();
+})
+
 
 // Search functionality
 const searchInput = document.getElementById("searchInput");
