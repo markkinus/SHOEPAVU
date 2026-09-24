@@ -31,8 +31,10 @@ function updateCartCount() {
         totalQuantity += item.quantity
     })
 
+    if (cartCount) {
     //update the cart count
     cartCount.textContent = totalQuantity
+    }
 }
 
 // console.log(cartButton);
@@ -58,9 +60,31 @@ closeCart.addEventListener("click", function() {
 })
 }
 
+// Function to show a cart message
+function showCartMessage(message) {
+    
+    // Get the cart message
+    const cartMessage = document.getElementById("cart-message")
+
+    // Display the cart message
+    cartMessage.textContent = message
+
+    // Show the cart message
+    cartMessage.style.display = "block"
+
+    // Hide the cart message after 2 seconds
+    setTimeout(function() {
+        cartMessage.style.display = "none"
+    }, 2000)
+}
+
 
 // function to display products inside cart
 function displayCart() {
+
+    if(!cartItems) {
+        return
+    }
     //clear the cart area before displaying the products
     cartItems.innerHTML = ""
 
@@ -123,6 +147,12 @@ function displayCart() {
 
         //add a click event to the remove button
         removeButton.addEventListener("click", function() {
+
+            const confirmRemove = confirm(
+                `Are you sure you want to remove ${item.name} from your cart?`
+            )
+            if(confirmRemove) {
+                
             //remove the product from the cart
             cart = cart.filter(function(product) {
                 return product.name !== item.name
@@ -131,6 +161,7 @@ function displayCart() {
             //display the cart
             displayCart()
             updateCartCount()
+            }
         })
 
 
@@ -141,8 +172,11 @@ function displayCart() {
         total = total + subtotal
     })
 
+    if(cartTotal) {
+        
     //display the total price in the cart
     cartTotal.textContent = total.toLocaleString()
+    }
     console.log(cart)
 }
 
@@ -256,6 +290,8 @@ signInForm.addEventListener("submit", function(event) {
 })
 }
 
+// Authentication functionality
+// Get the sign in and register links
 const signInLink = document.getElementById("sign-in-link");
 const registerLink = document.getElementById("register-link");
 const welcomeUser = document.getElementById("welcome-user");
@@ -264,9 +300,11 @@ const logoutLink = document.getElementById("logout-link");
 if(signInLink && registerLink && welcomeUser && logoutLink) {
     
 
-const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+// Check if the user is logged in
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-if(loggedInUser) {
+// If the user is logged in, display the welcome message
+    if(loggedInUser) {
     registerLink.style.display = "none";
     signInLink.style.display = "none";
 
@@ -430,7 +468,7 @@ fetch("http://localhost:3000/api/products")
                 updateCartCount()
 
                 //show ordered message
-            alert("Product added to cart successfully")
+            showCartMessage(product.name + " has been added to your cart!")
             })
         })
     }
