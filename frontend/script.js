@@ -41,18 +41,22 @@ function updateCartCount() {
 // console.log(closeCart);
 
 // add a click event to the cart button
+if (cartButton) {
 cartButton.addEventListener("click", function(event) {
     event.preventDefault()
 
     // display the cart container
     cartContainer.style.display = "block"
 })
+}
 
 // add a click event to the close cart button
+if (closeCart) {
 closeCart.addEventListener("click", function() {
     //hide the cart container
     cartContainer.style.display = "none"
 })
+}
 
 
 // function to display products inside cart
@@ -146,6 +150,8 @@ function displayCart() {
 // Get the checkout button
 const checkoutButton = document.getElementById("checkout-button");
 
+if(checkoutButton) {
+
 // Add a click event to the checkout button
 checkoutButton.addEventListener("click", function() {
     // Check if the cart is empty
@@ -171,6 +177,7 @@ checkoutButton.addEventListener("click", function() {
     displayCart()
     updateCartCount()
 })
+}
 
 // Register functionality
 
@@ -208,7 +215,7 @@ registerForm.addEventListener("submit", function(event) {
 
     setTimeout(function() {
         window.location.href = "sign-in.html";
-    }, 1000);
+    }, 2000);
 })
 }
 
@@ -240,20 +247,36 @@ signInForm.addEventListener("submit", function(event) {
 
         localStorage.setItem("loggedInUser", JSON.stringify(user));
 
-        window.location.href = "index.html";
+        setTimeout(function() {
+            window.location.href = "index.html";
+    }, 2000); 
     } else {
         signInMessage.textContent = "Incorrect email or password";
     }
 })
 }
 
-// Logout functionality
-const logoutButton = document.getElementById("logout-button");
-logoutButton.addEventListener("click", function() {
-    localStorage.removeItem("loggedInUser")
+const signInLink = document.getElementById("sign-in-link");
+const registerLink = document.getElementById("register-link");
+const welcomeUser = document.getElementById("welcome-user");
+const logoutLink = document.getElementById("logout-link");
 
-    alert("You have been logged out")
-})
+if(signInLink && registerLink && welcomeUser && logoutLink) {
+    
+
+const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+if(loggedInUser) {
+    registerLink.style.display = "none";
+    signInLink.style.display = "none";
+
+    welcomeUser.textContent = "Welcome, " + loggedInUser.name;
+    
+} else {
+    welcomeUser.style.display = "none"
+    logoutLink.style.display = "none";
+}
+}
 
 // Search functionality
 const searchInput = document.getElementById("searchInput");
@@ -279,8 +302,9 @@ function searchProducts() {
     displayProducts(filteredProducts)
 }
 
+if (searchInput) {
 searchInput.addEventListener("input", searchProducts);
-
+}
 // Category functionality
 // Get the category links
 const categoryLinks = document.querySelectorAll(".category");

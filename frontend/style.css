@@ -152,18 +152,6 @@
     font-weight: bold;
     color: green
 }
-#sign-in-modal{
-    display: none;
-    position: fixed;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width:100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
 .auth-section{
     display: flex;
     align-items: center;
@@ -229,17 +217,41 @@
 .auth-link a:hover{
     text-decoration: underline;
 }
-#logout-button{
+.logout-actions{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.logout-actions a{
     background-color: rgb(77, 32, 32);
     border-width: 1px;
     border-style: solid;
-    border-color: white;
-    padding: 8px;
+    border-color: white; 
+    padding: 12px;
     color: white;
     font-weight: bold;
     border-radius: 8px;
+    text-decoration: none;
 }
-#logout-button:hover{
+.logout-actions a:hover{
+    background-color: rgb(105, 50, 50);
+}
+#welcome-user{
+    color: white;
+    font-weight: bold;
+}
+#logout-link{
+    background-color: rgb(77, 32, 32);
+    border-width: 1px;
+    border-style: solid;
+    border-color: white; 
+    padding: 12px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+}
+#logout-link:hover{
     background-color: rgb(105, 50, 50);
 }
 #hero-section{
