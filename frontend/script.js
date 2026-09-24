@@ -91,7 +91,7 @@ function displayCart() {
     //start the total at 0
     let total = 0;
 
-    // to go through each product in cart
+    // to go through each product item in cart
     cart.forEach(function(item) {
         // create a new div for the cart product
         const cartItem = document.createElement("div")
@@ -377,7 +377,7 @@ categoryLinks.forEach(function(categoryLink) {
 
 // Fetch products
 fetch("http://localhost:3000/api/products")
-// Convert the response to JSON
+// Convert the response to Javascript data
     .then(function(response) {
         return response.json()
     })
@@ -460,7 +460,7 @@ fetch("http://localhost:3000/api/products")
                     cart.push(cartProduct)
                 }
                 
-                console.log("Cart:", cart)
+                // console.log("Cart:", cart)
                 saveCart()
                 displayCart()
 
