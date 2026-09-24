@@ -173,23 +173,11 @@ checkoutButton.addEventListener("click", function() {
 })
 
 // Register functionality
-// Get the register button
-const registerButton = document.getElementById("register-button");
-const registerModal = document.getElementById("register-modal");
-const closeRegister = document.getElementById("close-register");
-
-// Add a click event to the register button
-registerButton.addEventListener("click", function() {
-    registerModal.style.display = "flex"
-})
-
-// Add a click event to the close register button
-closeRegister.addEventListener("click", function() {
-    registerModal.style.display = "none"
-})
 
 // Get the register form
 const registerForm = document.getElementById("register-form");
+
+if(registerForm) {
 const registerMessage = document.getElementById("register-message");
 
 // Add a submit event to the register form
@@ -217,26 +205,18 @@ registerForm.addEventListener("submit", function(event) {
     registerMessage.textContent = "Registration successful!";
     
     registerForm.reset();
-})
 
-// Sign in functionality
-// Get the sign in button
-const signInButton = document.getElementById("sign-in-button");
-const signInModal = document.getElementById("sign-in-modal");
-const closeSignIn = document.getElementById("close-sign-in");
-
-// Add a click event to the sign in button
-signInButton.addEventListener("click", function() {
-    signInModal.style.display = "flex"
+    setTimeout(function() {
+        window.location.href = "sign-in.html";
+    }, 1000);
 })
+}
 
-// Add a click event to the close sign in button
-closeSignIn.addEventListener("click", function() {
-    signInModal.style.display = "none"
-})
 
 // Get the sign in form
 const signInForm = document.getElementById("sign-in-form");
+
+if(signInForm) {
 const signInMessage = document.getElementById("sign-in-message");
 
 // Add a submit event to the sign in form
@@ -259,10 +239,13 @@ signInForm.addEventListener("submit", function(event) {
         signInMessage.textContent = "Sign in successful";
 
         localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+        window.location.href = "index.html";
     } else {
         signInMessage.textContent = "Incorrect email or password";
     }
 })
+}
 
 // Logout functionality
 const logoutButton = document.getElementById("logout-button");
