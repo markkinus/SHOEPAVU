@@ -316,6 +316,19 @@ if(signInLink && registerLink && welcomeUser && logoutLink) {
 }
 }
 
+// Logout functionality
+if (logoutLink) {
+// Add a click event to the logout link
+logoutLink.addEventListener("click", function() {
+    event.preventDefault();
+
+    // Remove the logged in user from the local storage
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "logout.html";
+    
+})
+}
+
 // Search functionality
 const searchInput = document.getElementById("searchInput");
 
