@@ -249,6 +249,19 @@
     font-weight: bold;
     color: green
 }
+#logout-button{
+    background-color: rgb(77, 32, 32);
+    border-width: 1px;
+    border-style: solid;
+    border-color: white;
+    padding: 8px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+}
+#logout-button:hover{
+    background-color: rgb(105, 50, 50);
+}
 #hero-section{
     display: flex;
     justify-content: space-between;

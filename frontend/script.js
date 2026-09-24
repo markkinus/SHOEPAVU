@@ -264,6 +264,14 @@ signInForm.addEventListener("submit", function(event) {
     }
 })
 
+// Logout functionality
+const logoutButton = document.getElementById("logout-button");
+logoutButton.addEventListener("click", function() {
+    localStorage.removeItem("loggedInUser")
+
+    alert("You have been logged out")
+})
+
 // Search functionality
 const searchInput = document.getElementById("searchInput");
 
